@@ -1,12 +1,16 @@
 Package: testingpackage
-Title: What the Package Does (One Line, Title Case)
+Title: Testing package to pull in data from AWS
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Josh", "Allen",  ,"joshua.f.allen@gmail.com", role = c("aut", "cre"))
+Description: This is just a small R package to test some implementations
+License: CC0 1.0 Universal
 Encoding: UTF-8
+URL: https://github.com/joshuafayallen/testingpackage
+BugReports: https://github.com/joshuafayallen/testingpackage/issues
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
+Depends: R (>= 4.0)
+Imports: 
+    arrow (>= 16.1.0),
+    rlang (>= 1.1.4)
