@@ -220,7 +220,6 @@ if(!isTRUE(is.null(country)) && checking_install_aws == TRUE){
 #' - csv, csv.gz, csv.xz with `utils::read.csv`
 #' - parquet with `arrow::read_parquet`
 #'
-#' @family pb_rw
 #' @param file filename to parse
 #' @return function for reading the file, if found
 #' @keywords internal

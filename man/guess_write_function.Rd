@@ -22,5 +22,4 @@ This is a slight modification to the guess_read function from the piggyback back
 \item parquet with \code{arrow::read_parquet}
 }
 }
-\concept{pb_rw}
 \keyword{internal}
