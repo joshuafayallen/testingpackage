@@ -13,4 +13,9 @@ RoxygenNote: 7.3.2
 Depends: R (>= 4.0)
 Imports: 
     arrow (>= 16.1.0),
-    rlang (>= 1.1.4)
+    cli (>= 3.6.3),
+    dplyr (>= 1.0.0),
+    piggyback (>= 0.1.5),
+    rlang (>= 1.1.0),
+    tidyselect (>= 1.1.1),
+    utils

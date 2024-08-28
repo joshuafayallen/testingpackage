@@ -4,14 +4,27 @@
 \alias{import_palmer_penguins}
 \title{Importing from s3 bucket}
 \usage{
-import_palmer_penguins(write_to_directory = FALSE, path = NULL, country = NULL)
+import_palmer_penguins(
+  write_to_directory = FALSE,
+  path = NULL,
+  country = NULL,
+  file_name = NULL,
+  file_type = c("csv", "parquet"),
+  partions = NULL
+)
 }
 \arguments{
-\item{write_to_directory}{controls whether data is written to local directory. Defaults to \code{TRUE}}
+\item{write_to_directory}{controls whether data is written to local directory. Defaults to \code{FALSE}}
 
 \item{path}{name of directory you would like to write the dataset to}
 
 \item{country}{If you want a subset of the data please provide a string for something coercible to a string.}
+
+\item{file_name}{when write_directory is \code{TRUE} please specify a file name. Must be a character}
+
+\item{file_type}{When write_to_directory is \code{TRUE} this will choose what file type to write to. Can be csv or parquet}
+
+\item{partions}{if write_to_directory is set to TRUE asnd file_type is parquet this will control the partions. Can be character vector or unquoted column names. Defaults to null}
 }
 \description{
 This function imports our data from an s3 AWS bucket
