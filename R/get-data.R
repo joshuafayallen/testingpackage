@@ -15,7 +15,7 @@ import_palmer_penguins = \(write_to_directory = FALSE,
   path = NULL,
   country = NULL,
   file_name = NULL, 
-  write_function = guess_write_function(file),
+  write_function = guess_write_function(file_name),
   partions = NULL){
 
 

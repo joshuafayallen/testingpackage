@@ -9,7 +9,7 @@ import_palmer_penguins(
   path = NULL,
   country = NULL,
   file_name = NULL,
-  write_function = guess_write_function(file),
+  write_function = guess_write_function(file_name),
   partions = NULL
 )
 }
