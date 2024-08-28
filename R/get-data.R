@@ -23,14 +23,13 @@ import_palmer_penguins = \(write_to_directory = FALSE,
 
   validate_inputs(write_to_directory, path, country, file_name, write_function)
   
-  
 if(checking_install_aws == TRUE && write_to_directory == FALSE){
 
 raw_data = arrow::open_dataset('s3://palmerpenguins/') 
     
   cli::cli_alert_success('Data has been read in to bring data into memory use dplyr::collect()')
   
-
+raw_data
   }
   if(checking_install_aws == FALSE){
 
@@ -41,10 +40,11 @@ tag = '0.0.1',
 dest = tempdir())
 
 
-    raw_data = arrow::read_parquet(paste0(tempdir(),'/penguins.parquet'))
+  raw_data = arrow::read_parquet(paste0(tempdir(),'/penguins.parquet'))
 
     cli::cli_alert_success('Downloaded data')
  
+  raw_data
   }
   
 if(!isTRUE(is.null(country)) && checking_install_aws == TRUE){
