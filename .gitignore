@@ -2,3 +2,4 @@
 *.Rproj
 altdoc/freeze.rds
 data
+/.quarto/
