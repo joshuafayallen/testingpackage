@@ -19,7 +19,7 @@ import_palmer_penguins = \(write_to_directory = FALSE,
   write_function = NULL,
   partions = NULL){
 
-  check_install_aws = arrow::arrow_with_s3()
+  checking_install_aws = arrow::arrow_with_s3()
 
   validate_inputs(write_to_directory, path, country, file_name, write_function)
   
