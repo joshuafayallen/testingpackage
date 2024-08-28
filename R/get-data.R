@@ -85,12 +85,7 @@ dest = tempdir())
 
 
   }
-  if(write_to_directory == TRUE && !isTRUE(is.null(path)) && !isTRUE(is.null(file_name))){
-
-   path = rlang::englue('{path}')
-   file_name = rlang::englue('{file_name}')
-    
-  }
+ 
 
   if(!isTRUE(is.null(country)) && checking_install_aws == FALSE){
 
@@ -107,18 +102,22 @@ dest = tempdir())
  }
   
  if(checking_install_aws == FALSE && write_to_directory == TRUE && !isTRUE(is.null(path)) && file_type == 'csv'){
-
+  path = rlang::englue('{path}')
+  file_name = rlang::englue('{file_name}')
    utils::write.csv(raw_data, paste0(path, file_name))
 
   
  }
 
  if(checking_install_aws == FALSE && write_to_directory == TRUE && !isTRUE(is.null(path)) && file_type == 'parquet'){
+   
+  path = rlang::englue('{path}')
+  file_name = rlang::englue('{file_name}')
 
   arrow::write_parquet(raw_data, paste0(path, file_name))
 
  
-}
+ }
 
   
 if(checking_install_aws == TRUE && !isTRUE(is.null(path)) && file_type == 'csv'){
