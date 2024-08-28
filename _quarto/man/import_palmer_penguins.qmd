@@ -15,7 +15,7 @@ This function imports our data from an s3 AWS bucket
   path = NULL,
   country = NULL,
   file_name = NULL,
-  write_function = guess_write_function(file),
+  write_function = NULL,
   partions = NULL
 )
 </code></pre>
@@ -49,4 +49,10 @@ a function to write the data. can be write.csv or arrow::write_parquet. If no fu
 if write_to_directory is set to TRUE asnd file_type is parquet this will control the partions. Can be character vector or unquoted column names. Defaults to null
 </td></tr>
 </table>
+
+
+### Value
+
+This function returns a tibble or Arrow Dataset containing the data
+
 

@@ -10,11 +10,33 @@
     ]
   },
   {
+    "objectID": "man/validate_inputs.html",
+    "href": "man/validate_inputs.html",
+    "title": "testingpackage",
+    "section": "",
+    "text": "keywords @internal\n\n\n\nvalidate_inputs(write_to_directory, path, country, file_name, write_function)",
+    "crumbs": [
+      "Reference",
+      "validate_inputs"
+    ]
+  },
+  {
+    "objectID": "man/validate_inputs.html#validate-input-parameters",
+    "href": "man/validate_inputs.html#validate-input-parameters",
+    "title": "testingpackage",
+    "section": "",
+    "text": "keywords @internal\n\n\n\nvalidate_inputs(write_to_directory, path, country, file_name, write_function)",
+    "crumbs": [
+      "Reference",
+      "validate_inputs"
+    ]
+  },
+  {
     "objectID": "man/import_palmer_penguins.html",
     "href": "man/import_palmer_penguins.html",
     "title": "testingpackage",
     "section": "",
-    "text": "This function imports our data from an s3 AWS bucket\n\n\n\nimport_palmer_penguins(\n  write_to_directory = FALSE,\n  path = NULL,\n  country = NULL,\n  file_name = NULL,\n  write_function = guess_write_function(file),\n  partions = NULL\n)\n\n\n\n\n\n\n\nwrite_to_directory\n\n\ncontrols whether data is written to local directory. Defaults to FALSE\n\n\n\n\npath\n\n\nname of directory you would like to write the dataset to\n\n\n\n\ncountry\n\n\nIf you want a subset of the data please provide a string for something coercible to a string.\n\n\n\n\nfile_name\n\n\nwhen write_directory is TRUE please specify a file name. Must be a character\n\n\n\n\nwrite_function\n\n\na function to write the data. can be write.csv or arrow::write_parquet. If no function supplied than we will try to guess the function\n\n\n\n\npartions\n\n\nif write_to_directory is set to TRUE asnd file_type is parquet this will control the partions. Can be character vector or unquoted column names. Defaults to null",
+    "text": "This function imports our data from an s3 AWS bucket\n\n\n\nimport_palmer_penguins(\n  write_to_directory = FALSE,\n  path = NULL,\n  country = NULL,\n  file_name = NULL,\n  write_function = NULL,\n  partions = NULL\n)\n\n\n\n\n\n\n\nwrite_to_directory\n\n\ncontrols whether data is written to local directory. Defaults to FALSE\n\n\n\n\npath\n\n\nname of directory you would like to write the dataset to\n\n\n\n\ncountry\n\n\nIf you want a subset of the data please provide a string for something coercible to a string.\n\n\n\n\nfile_name\n\n\nwhen write_directory is TRUE please specify a file name. Must be a character\n\n\n\n\nwrite_function\n\n\na function to write the data. can be write.csv or arrow::write_parquet. If no function supplied than we will try to guess the function\n\n\n\n\npartions\n\n\nif write_to_directory is set to TRUE asnd file_type is parquet this will control the partions. Can be character vector or unquoted column names. Defaults to null\n\n\n\n\n\n\nThis function returns a tibble or Arrow Dataset containing the data",
     "crumbs": [
       "Reference",
       "import_palmer_penguins"
@@ -25,7 +47,7 @@
     "href": "man/import_palmer_penguins.html#importing-from-s3-bucket",
     "title": "testingpackage",
     "section": "",
-    "text": "This function imports our data from an s3 AWS bucket\n\n\n\nimport_palmer_penguins(\n  write_to_directory = FALSE,\n  path = NULL,\n  country = NULL,\n  file_name = NULL,\n  write_function = guess_write_function(file),\n  partions = NULL\n)\n\n\n\n\n\n\n\nwrite_to_directory\n\n\ncontrols whether data is written to local directory. Defaults to FALSE\n\n\n\n\npath\n\n\nname of directory you would like to write the dataset to\n\n\n\n\ncountry\n\n\nIf you want a subset of the data please provide a string for something coercible to a string.\n\n\n\n\nfile_name\n\n\nwhen write_directory is TRUE please specify a file name. Must be a character\n\n\n\n\nwrite_function\n\n\na function to write the data. can be write.csv or arrow::write_parquet. If no function supplied than we will try to guess the function\n\n\n\n\npartions\n\n\nif write_to_directory is set to TRUE asnd file_type is parquet this will control the partions. Can be character vector or unquoted column names. Defaults to null",
+    "text": "This function imports our data from an s3 AWS bucket\n\n\n\nimport_palmer_penguins(\n  write_to_directory = FALSE,\n  path = NULL,\n  country = NULL,\n  file_name = NULL,\n  write_function = NULL,\n  partions = NULL\n)\n\n\n\n\n\n\n\nwrite_to_directory\n\n\ncontrols whether data is written to local directory. Defaults to FALSE\n\n\n\n\npath\n\n\nname of directory you would like to write the dataset to\n\n\n\n\ncountry\n\n\nIf you want a subset of the data please provide a string for something coercible to a string.\n\n\n\n\nfile_name\n\n\nwhen write_directory is TRUE please specify a file name. Must be a character\n\n\n\n\nwrite_function\n\n\na function to write the data. can be write.csv or arrow::write_parquet. If no function supplied than we will try to guess the function\n\n\n\n\npartions\n\n\nif write_to_directory is set to TRUE asnd file_type is parquet this will control the partions. Can be character vector or unquoted column names. Defaults to null\n\n\n\n\n\n\nThis function returns a tibble or Arrow Dataset containing the data",
     "crumbs": [
       "Reference",
       "import_palmer_penguins"
