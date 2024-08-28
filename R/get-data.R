@@ -57,7 +57,7 @@ type_of_country = typeof(country)
 
 cli::cli_abort(message = '{country} is {type_of_country} and should be a string')
 }
-  if(checking_install_aws == TRUE){
+  if(checking_install_aws == TRUE && write_to_directory == FALSE){
 
 raw_data = arrow::open_dataset('s3://palmerpenguins/') 
     
