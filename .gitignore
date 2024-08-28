@@ -3,3 +3,4 @@
 altdoc/freeze.rds
 data
 /.quarto/
+^_quarto$

@@ -1,0 +1,52 @@
+
+## Importing from s3 bucket {.unnumbered}
+
+
+### Description
+
+This function imports our data from an s3 AWS bucket
+
+
+
+### Usage
+
+<pre><code class='language-R'>import_palmer_penguins(
+  write_to_directory = FALSE,
+  path = NULL,
+  country = NULL,
+  file_name = NULL,
+  file_type = c("csv", "parquet"),
+  partions = NULL
+)
+</code></pre>
+
+
+### Arguments
+
+<table>
+<tr><td style = "white-space: nowrap; font-family: monospace; vertical-align: top"><code id="write_to_directory">write_to_directory</code></td>
+<td>
+controls whether data is written to local directory. Defaults to <code>FALSE</code>
+</td></tr>
+<tr><td style = "white-space: nowrap; font-family: monospace; vertical-align: top"><code id="path">path</code></td>
+<td>
+name of directory you would like to write the dataset to
+</td></tr>
+<tr><td style = "white-space: nowrap; font-family: monospace; vertical-align: top"><code id="country">country</code></td>
+<td>
+If you want a subset of the data please provide a string for something coercible to a string.
+</td></tr>
+<tr><td style = "white-space: nowrap; font-family: monospace; vertical-align: top"><code id="file_name">file_name</code></td>
+<td>
+when write_directory is <code>TRUE</code> please specify a file name. Must be a character
+</td></tr>
+<tr><td style = "white-space: nowrap; font-family: monospace; vertical-align: top"><code id="file_type">file_type</code></td>
+<td>
+When write_to_directory is <code>TRUE</code> this will choose what file type to write to. Can be csv or parquet
+</td></tr>
+<tr><td style = "white-space: nowrap; font-family: monospace; vertical-align: top"><code id="partions">partions</code></td>
+<td>
+if write_to_directory is set to TRUE asnd file_type is parquet this will control the partions. Can be character vector or unquoted column names. Defaults to null
+</td></tr>
+</table>
+
