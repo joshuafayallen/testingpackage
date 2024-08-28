@@ -18,6 +18,8 @@ website:
         contents:
           - text: import_palmer_penguins
             file: man/import_palmer_penguins.qmd
+          - text: validate_inputs
+            file: man/validate_inputs.qmd
       - text: License
         file: LICENSE.md
       - text: Citation

@@ -1,0 +1,15 @@
+
+## Validate input parameters {.unnumbered}
+
+
+### Description
+
+keywords @internal
+
+
+
+### Usage
+
+<pre><code class='language-R'>validate_inputs(write_to_directory, path, country, file_name, write_function)
+</code></pre>
+
