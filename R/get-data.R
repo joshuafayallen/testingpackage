@@ -12,7 +12,7 @@
 #' @export
 
 
-import_palmer_penguins = \(write_to_directory = FALSE,
+import_palmer_penguins <- \(write_to_directory = FALSE,
   path = NULL,
   country = NULL,
   file_name = NULL, 
@@ -25,8 +25,7 @@ import_palmer_penguins = \(write_to_directory = FALSE,
   
 if(checking_install_aws == TRUE && write_to_directory == FALSE){
 
-raw_data = arrow::open_dataset('s3://palmerpenguins/') 
-    
+raw_data = arrow::open_dataset('s3://palmerpenguins/')   
   cli::cli_alert_success('Data has been read in to bring data into memory use dplyr::collect()')
   
 raw_data
@@ -40,20 +39,20 @@ tag = '0.0.1',
 dest = tempdir())
 
 
-  raw_data = arrow::read_parquet(paste0(tempdir(),'/penguins.parquet'))
+  raw_data <- arrow::read_parquet(paste0(tempdir(),'/penguins.parquet'))
 
     cli::cli_alert_success('Downloaded data')
  
   raw_data
   }
   
-if(!isTRUE(is.null(country)) && checking_install_aws == TRUE){
+if(!isTRUE(is.null(country))){
 
   country_string = rlang::ensym(country)
 
  tryCatch({
    
-   raw_data = raw_data |>
+   raw_data <- raw_data |>
      dplyr::filter(island %in% {{country}}) 
    
    if(nrow(raw_data) > 0 ){
@@ -74,45 +73,11 @@ if(!isTRUE(is.null(country)) && checking_install_aws == TRUE){
    conditionMessage(e)
    
  })
-  
-  
-
-
-
 }
-  if(!isTRUE(is.null(country)) && checking_install_aws == FALSE){
-
-  country_string = rlang::ensym(country)
-
- tryCatch({
-   
-   raw_data = raw_data |>
-     dplyr::filter(island %in% {{country}}) 
-   
-   if(nrow(raw_data) > 0 ){
-     
-     cli::cli_alert_success('Successfully subseted by {.val {{country_string}}')
-     
-     
-   }
-   else{
-     
-     cli::cli_alert_warning('Check query for spelling. dataframe has no rows')
-     
-     
-   }
-   
- }, error = function(e){
-   
-   conditionMessage(e)
-   
- })
-
-
-}
+  
   if(write_to_directory == TRUE){
 
-  write_data(data = raw_data, path, file_name, write_function, partions)
+  write_data(raw_data, path, file_name, write_function, partions)
 }
 
 

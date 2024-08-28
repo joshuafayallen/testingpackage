@@ -29,9 +29,9 @@ guess_write_function <- function(file_name){
 #' writing data to directory 
 #' @keywords internal
 
-write_data = \(data, path, file_name, write_function, partions){
+write_data <- \(data, path, file_name, write_function, partions){
 
-  path_show = rlang::englue('{path}')
+  path_show <- rlang::englue('{path}')
 
 
   if(dir.exists(path)){
