@@ -5,8 +5,8 @@
 #' @param write_to_directory controls whether data is written to local directory. Defaults to `FALSE`
 #' @param path name of directory you would like to write the dataset to
 #' @param country If you want a subset of the data please provide a string for something coercible to a string.
-#' @param file_type When write_to_directory is `TRUE` this will choose what file type to write to. Can be csv or parquet
 #' @param file_name when write_directory is `TRUE` please specify a file name. Must be a character
+#' @param write_function a function to write the data. can be write.csv or arrow::write_parquet. If no function supplied than we will try to guess the function
 #' @param partions if write_to_directory is set to TRUE asnd file_type is parquet this will control the partions. Can be character vector or unquoted column names. Defaults to null
 #' @export
 
@@ -15,11 +15,15 @@ import_palmer_penguins = \(write_to_directory = FALSE,
   path = NULL,
   country = NULL,
   file_name = NULL, 
-  file_type = c('csv', 'parquet'),
+  write_function = guess_write_function(file),
   partions = NULL){
 
 
 checking_install_aws = arrow::arrow_with_s3()
+
+if(!isTRUE(rlang::is_function(write_function)) && write_to_directory == TRUE && !isTRUE(is.character(file_name)) && isTRUE(partions)){
+  cli::cli_abort('One of these is not TRUE. write_function is not a recognized write function should be write.csv, or arrow::write_parquet. File path or file name should be a character')
+}
   
 if(!isTRUE(is.character(path)) && !isTRUE(is.null(path))){
 
@@ -73,7 +77,7 @@ dest = tempdir())
     raw_data = arrow::read_parquet(paste0(tempdir(),'/penguins.parquet'))
 
     cli::cli_alert_success('Downloaded data')
-
+ 
   }
 
   if(!isTRUE(is.null(country)) && checking_install_aws == TRUE){
@@ -101,49 +105,32 @@ dest = tempdir())
    
  }
   
- if(checking_install_aws == FALSE && write_to_directory == TRUE && !isTRUE(is.null(path)) && file_type == 'csv'){
+ if(checking_install_aws == FALSE && write_to_directory == TRUE && isTRUE(is.character(path)) && isTRUE(is.character(file_name))  ){
+   
+  cli::cli_alert_warning('Bringing data into memory to write to {path}')
+  
   path = rlang::englue('{path}')
   file_name = rlang::englue('{file_name}')
-   utils::write.csv(raw_data, paste0(path, file_name))
-
-  
- }
-
- if(checking_install_aws == FALSE && write_to_directory == TRUE && !isTRUE(is.null(path)) && file_type == 'parquet'){
    
-  path = rlang::englue('{path}')
-  file_name = rlang::englue('{file_name}')
-
-  arrow::write_parquet(raw_data, paste0(path, file_name))
-
- 
- }
-
-  
-if(checking_install_aws == TRUE && !isTRUE(is.null(path)) && file_type == 'csv'){
-
-  cli::cli_alert('Bringing data into memory')
-
-  raw_data = raw_data |>
-    dplyr::collect()
-
+   raw_data = raw_data |>
+     dplyr::collect()
    
-  utils::write.csv(raw_data, paste0(path, file_name))
+   write_function(raw_data, file.path(path, file_name))
 
-
-}
   
-if(checking_install_aws == TRUE && !isTRUE(is.null(path)) && file_type == 'parquet' && isTRUE(is.null(partions))){
+  
 
-  cli::cli_alert('Bringing data into memory to write_parquet')
 
-  raw_data = raw_data |>
-    dplyr::collect()
+ }
+  
+  if(checking_install_aws == TRUE && write_to_directory == TRUE && !isTRUE(is.null(path)) && write_to_directory == TRUE && isTRUE(is.character(path)) && isTRUE(is.character(file_name)) &&  isTRUE(is.null(partions))){
 
-  arrow::write_parquet(raw_data, paste0(path, file_name))
 
-}
-  if(checking_install_aws == TRUE && !isTRUE(is.null(path)) && file_type == 'parquet' && !isTRUE(is.null(partions))){
+
+  }
+
+
+  if(checking_install_aws == TRUE && !isTRUE(is.null(path)) && isTRUE(is.null(partions)) && write_to_directory == TRUE){
  
   cli::cli_alert_warning('Bringing data into memory to write to {path}')
 
@@ -224,6 +211,33 @@ if(!isTRUE(is.null(country)) && checking_install_aws == TRUE){
    return(raw_data)
 }
   
-  
+#' Guess write function from file extension
+#'
+#' This is a slight modification to the guess_read function from the piggyback backage
+#' 
+#' `guess_read_function` understands the following file extensions:
+#' 
+#' - csv, csv.gz, csv.xz with `utils::read.csv`
+#' - parquet with `arrow::read_parquet`
+#'
+#' @family pb_rw
+#' @param file filename to parse
+#' @return function for reading the file, if found
+#' @keywords internal
+
+guess_write_function <- function(file_name){
+  file_ext <- tools::file_ext(gsub(x = file_name, pattern = ".gz$|.xz$", replacement = ""))
+  if (file_ext == "parquet") rlang::check_installed("arrow")
+
+  write_fn <- switch(
+    file_ext,
+    "csv" = utils::read.csv,
+    "parquet" = arrow::read_parquet,
+    cli::cli_abort("File type {.val {file_ext}} is not recognized, please provide a {.arg read_function}")
+  )
+
+  return(write_fn)
+}
+
 
 

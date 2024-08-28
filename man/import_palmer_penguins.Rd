@@ -9,7 +9,7 @@ import_palmer_penguins(
   path = NULL,
   country = NULL,
   file_name = NULL,
-  file_type = c("csv", "parquet"),
+  write_function = guess_write_function(file),
   partions = NULL
 )
 }
@@ -22,7 +22,7 @@ import_palmer_penguins(
 
 \item{file_name}{when write_directory is \code{TRUE} please specify a file name. Must be a character}
 
-\item{file_type}{When write_to_directory is \code{TRUE} this will choose what file type to write to. Can be csv or parquet}
+\item{write_function}{a function to write the data. can be write.csv or arrow::write_parquet. If no function supplied than we will try to guess the function}
 
 \item{partions}{if write_to_directory is set to TRUE asnd file_type is parquet this will control the partions. Can be character vector or unquoted column names. Defaults to null}
 }
