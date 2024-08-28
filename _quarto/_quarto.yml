@@ -20,3 +20,5 @@ website:
             file: man/import_palmer_penguins.qmd
       - text: License
         file: LICENSE.md
+      - text: Citation
+        file: CITATION.md
