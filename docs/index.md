@@ -1,0 +1,10 @@
+
+
+This is a testing package for a future data package. Stay tuned for a
+cool package in the future. The main functionality is reading data from
+S3 buckets and github releases. This is really just a wrapper around
+some other fantastic packages. To install this package you can run.
+
+``` r
+devtools::install_github('joshuafayallen/testingpackage')
+```
