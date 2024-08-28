@@ -21,7 +21,8 @@ import_palmer_penguins = \(write_to_directory = FALSE,
 
 checking_install_aws = arrow::arrow_with_s3()
 
-if(!isTRUE(rlang::is_function(write_function)) && write_to_directory == TRUE && !isTRUE(is.character(file_name)) && isTRUE(partions)){
+if(!isTRUE(is.function(write_function)) && write_to_directory == TRUE && !isTRUE(is.character(file_name)) && isTRUE(partions)){
+
   cli::cli_abort('One of these is not TRUE. write_function is not a recognized write function should be write.csv, or arrow::write_parquet. File path or file name should be a character')
 }
   
