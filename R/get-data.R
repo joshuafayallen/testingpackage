@@ -54,7 +54,7 @@ if(!isTRUE(is.null(country)) && checking_install_aws == TRUE){
  tryCatch({
    
    raw_data = raw_data |>
-     dplyr::filter(.data[[island]] %in% {{country}}) 
+     dplyr::filter(island %in% {{country}}) 
    
    if(nrow(raw_data) > 0 ){
      
@@ -87,7 +87,7 @@ if(!isTRUE(is.null(country)) && checking_install_aws == TRUE){
  tryCatch({
    
    raw_data = raw_data |>
-     dplyr::filter(.data[[island]] %in% {{country}}) 
+     dplyr::filter(island %in% {{country}}) 
    
    if(nrow(raw_data) > 0 ){
      
@@ -109,7 +109,8 @@ if(!isTRUE(is.null(country)) && checking_install_aws == TRUE){
  })
 
 
-} if(write_to_directory == TRUE){
+}
+  if(write_to_directory == TRUE){
 
   write_data(data = raw_data, path, file_name, write_function, partions)
 }

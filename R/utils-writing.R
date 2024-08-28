@@ -27,7 +27,7 @@ guess_write_function <- function(file_name){
 
 
 #' writing data to directory 
-#' @internal
+#' @keywords internal
 
 write_data = \(data, path, file_name, write_function, partions){
 
@@ -45,7 +45,7 @@ write_data = \(data, path, file_name, write_function, partions){
 
   }
 
- if(is.null(partions))
+ if(is.null(partions)){
   
  cli::cli_alert_warning('Bringing data into memory to write to {path_show}')
   
@@ -56,6 +56,8 @@ write_data = \(data, path, file_name, write_function, partions){
     write_function = guess_write_function(file_name)
   }
   write_function(data, file.path(path, file_name))
+
+}
 
   else{
     

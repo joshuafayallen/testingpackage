@@ -1,6 +1,6 @@
 #' Validate input parameters
 #'
-#' @internal 
+#' keywords @internal 
 validate_inputs <- function(write_to_directory, path, country, file_name, write_function) {
   if (write_to_directory) {
     if (is.null(path) || is.null(file_name)) {

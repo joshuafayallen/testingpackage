@@ -9,7 +9,7 @@ import_palmer_penguins(
   path = NULL,
   country = NULL,
   file_name = NULL,
-  write_function = guess_write_function(file_name),
+  write_function = NULL,
   partions = NULL
 )
 }
@@ -25,6 +25,9 @@ import_palmer_penguins(
 \item{write_function}{a function to write the data. can be write.csv or arrow::write_parquet. If no function supplied than we will try to guess the function}
 
 \item{partions}{if write_to_directory is set to TRUE asnd file_type is parquet this will control the partions. Can be character vector or unquoted column names. Defaults to null}
+}
+\value{
+This function returns a tibble or Arrow Dataset containing the data
 }
 \description{
 This function imports our data from an s3 AWS bucket
