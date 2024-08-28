@@ -19,4 +19,3 @@ validate_inputs <- function(write_to_directory, path, country, file_name, write_
     cli::cli_abort("write_function must be a function or NULL.")
   }
 }
-
